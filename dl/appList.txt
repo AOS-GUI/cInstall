@@ -1,2 +1,2 @@
 browser|AOS-GUI browser. (Installs PyQt5WebEngine)|v1.0|db/browser.py
-helloWorld!|Simple testing app.|v1.0|db/helloworld.py
+helloworld|Simple testing app.|v1.0|db/helloworld.py
