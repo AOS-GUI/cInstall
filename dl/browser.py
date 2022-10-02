@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
 
-from files.support.system.helpers.funcs import msgBox
+from files.system.sdk.sdk import msgBox
 
 # next line is the project description, format is '#(tilde){name}|{desc}|{ver}'
 #~browser|AOS-GUI Browser|v1.0
