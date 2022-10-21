@@ -1,2 +1,2 @@
-browser|AOS-GUI browser. (Installs PyQt5WebEngine)|v1.0|db/browser.py
+nanoweb|nanoweb browser for AOS. (Installs PyQt5WebEngine)|v1.0|db/nanoweb.py
 helloworld|Simple testing app.|v1.0|db/helloworld.py
