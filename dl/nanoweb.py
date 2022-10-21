@@ -111,7 +111,7 @@ class MainWindow(QMainWindow):
 
         navtb.addWidget(self.urlbar)
 
-        # stop_btn = QAction("╳", self)
+        # stop_btn = QAction("X", self)
         # stop_btn.setStatusTip("Stop loading current page")
         # stop_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
         # navtb.addAction(stop_btn)
