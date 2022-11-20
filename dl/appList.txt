@@ -1,2 +1,3 @@
 nanoweb|nanoweb browser for AOS. (Installs PyQt5WebEngine)|v1.0|db/nanoweb.py
 helloworld|Simple testing app.|v1.0|db/helloworld.py
+failamp|media player from learnpyqt5.com.|v1.0|db/failamp.py;db/assets/failamp/images/application-image.png;db/assets/failamp/images/control.png;db/assets/failamp/images/control-pause.png;db/assets/failamp/images/control-skip.png;db/assets/failamp/images/control-skip-180.png;db/assets/failamp/images/control-stop-square.png;db/assets/failamp/images/speaker-volume.png
