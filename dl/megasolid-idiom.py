@@ -3,6 +3,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtPrintSupport import *
 
+from sdk.sdk import *
+
 import os
 import sys
 import uuid
@@ -374,6 +376,7 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
     app.setApplicationName("Megasolid Idiom")
+    # app.setPalette(getPalette())
 
     window = MainWindow()
     app.exec_()

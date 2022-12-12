@@ -4,6 +4,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtMultimedia import *
 from PyQt5.QtMultimediaWidgets import *
 
+from sdk.sdk import *
+
 #~failamp|media player from learnpyqt.com|v1.0
 
 class Ui_MainWindow(object):
@@ -12,6 +14,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(484, 371)
         self.setWindowFlags(Qt.Window | Qt.WindowStaysOnTopHint)
         self.centralWidget = QWidget(MainWindow)
+
         sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)

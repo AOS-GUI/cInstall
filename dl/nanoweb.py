@@ -10,6 +10,7 @@ try:
 except ImportError:
     from pip._internal import main as pipmain
 
+from sdk.sdk import *
 
 try:
     from PyQt5.QtCore import *
@@ -271,6 +272,7 @@ app = QApplication(sys.argv)
 
 app.setApplicationName("nanoweb")
 app.setWindowIcon(QIcon("nanoweb.png"))
+# app.setPalette(getPalette())
 
 # dialog = Ui_Dialog()
 window = MainWindow()
