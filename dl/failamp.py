@@ -6,7 +6,9 @@ from PyQt5.QtMultimediaWidgets import *
 
 from sdk.sdk import *
 
-#~failamp|media player from learnpyqt.com|v1.0
+from os import name
+
+#~failamp|media player from learnpyqt.com|v1.1
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -130,6 +132,29 @@ class Ui_MainWindow(object):
         self.menuFIle.addAction(self.open_file_action)
         self.menuBar.addAction(self.menuFIle.menuAction())
 
+        if name == "nt":
+            self.menuBar().setStyleSheet("""
+                QMenuBar {
+                    background-color: #fff;
+                    color: #000;
+                }
+                QMenuBar::item {
+                    background-color: #fff;
+                    color: #000;
+                }
+                QMenuBar::item::selected {
+                    background-color: #3399cc;
+                    color: #fff;
+                }
+                QMenu {
+                    background-color: #fff;
+                    color: #000;
+                }
+                QMenu::item::selected {
+                    background-color: #333399;
+                    color: #999;
+            }""")
+
         self.retranslateUi(MainWindow)
         QMetaObject.connectSlotsByName(MainWindow)
 
@@ -140,8 +165,6 @@ class Ui_MainWindow(object):
         self.totalTimeLabel.setText(_translate("MainWindow", "0:00"))
         self.menuFIle.setTitle(_translate("MainWindow", "FIle"))
         self.open_file_action.setText(_translate("MainWindow", "Open file..."))
-
-
 
 
 def hhmmss(ms):
@@ -288,8 +311,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             self.viewer.hide()
 
-    def erroralert(self, *args):
-        print(args)
+    def erroralert(self, arg):
+        print(arg)
+        if str(arg).find("No decoder available"):
+            print("Hint from AOS: Do you have gstreamer installed? (Arch: sudo pacman -S gst-libav, Debian: sudo apt install gstreamer1.0-libav ubuntu-restricted-extras)")
 
 
 if __name__ == "__main__":
@@ -297,25 +322,8 @@ if __name__ == "__main__":
     app.setApplicationName("Failamp")
     app.setStyle("Fusion")
 
-    # Fusion dark palette from https://gist.github.com/QuantumCD/6245215.
-    palette = QPalette()
-    palette.setColor(QPalette.Window, QColor(53, 53, 53))
-    palette.setColor(QPalette.WindowText, Qt.white)
-    palette.setColor(QPalette.Base, QColor(25, 25, 25))
-    palette.setColor(QPalette.AlternateBase, QColor(53, 53, 53))
-    palette.setColor(QPalette.ToolTipBase, Qt.white)
-    palette.setColor(QPalette.ToolTipText, Qt.white)
-    palette.setColor(QPalette.Text, Qt.white)
-    palette.setColor(QPalette.Button, QColor(53, 53, 53))
-    palette.setColor(QPalette.ButtonText, Qt.white)
-    palette.setColor(QPalette.BrightText, Qt.red)
-    palette.setColor(QPalette.Link, QColor(42, 130, 218))
-    palette.setColor(QPalette.Highlight, QColor(42, 130, 218))
-    palette.setColor(QPalette.HighlightedText, Qt.black)
-    app.setPalette(palette)
-    app.setStyleSheet(
-        "QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }"
-    )
+    if getSettings()["inAppTheme"]["use"] == "True":
+        app.setPalette(getPalette())
 
     window = MainWindow()
     app.exec_()

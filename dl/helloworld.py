@@ -6,7 +6,6 @@ from PyQt5.QtCore import *
 
 #~helloworld|AOS-GUI Demo App|v1.0
 
-
 class hiworld(QWidget):
 
     # this can be your normal PyQt5 code, go crazy!

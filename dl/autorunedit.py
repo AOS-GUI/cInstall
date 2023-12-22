@@ -6,7 +6,7 @@ from PyQt5.QtCore import *
 
 from files.apps.sdk.sdk import *
 
-#~autorunedit|autorun.aos editor|v1.0
+#~autorunedit|autorun.aos editor|v1.1
 
 class ARedit(QWidget):
     def __init__(self):
@@ -56,7 +56,8 @@ class ARedit(QWidget):
     
     def editApp(self):
         appInput, z = QInputDialog.getText(window, "Edit app","Enter the new name of the app:", QLineEdit.Normal, self.appList.currentItem().text())
-        self.appList.currentItem().setText(appInput)
+        if appInput.strip() != "":
+            self.appList.currentItem().setText(appInput)
 
     def saveChanges(self):
         f = open("files/system/data/user/autorun.aos","w")

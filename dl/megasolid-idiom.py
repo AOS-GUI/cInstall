@@ -9,7 +9,7 @@ import os
 import sys
 import uuid
 
-#~megasolid-idiom|text editor from learnpyqt.com|v1.0
+#~megasolid-idiom|text editor from learnpyqt.com|v1.1
 
 FONT_SIZES = [7, 8, 9, 10, 11, 12, 13, 14, 18, 24, 36, 48, 64, 72, 96, 144, 288]
 IMAGE_EXTENSIONS = ['.jpg','.png','.bmp']
@@ -259,6 +259,29 @@ class MainWindow(QMainWindow):
         format_group.addAction(self.alignr_action)
         format_group.addAction(self.alignj_action)
 
+        if os.name == "nt":
+            self.menuBar().setStyleSheet("""
+                QMenuBar {
+                    background-color: #fff;
+                    color: #000;
+                }
+                QMenuBar::item {
+                    background-color: #fff;
+                    color: #000;
+                }
+                QMenuBar::item::selected {
+                    background-color: #3399cc;
+                    color: #fff;
+                }
+                QMenu {
+                    background-color: #fff;
+                    color: #000;
+                }
+                QMenu::item::selected {
+                    background-color: #333399;
+                    color: #999;
+            }""")
+
         format_menu.addSeparator()
 
         # A list of all format-related widgets/actions, so we can disable/enable signals when updating.
@@ -376,7 +399,8 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
     app.setApplicationName("Megasolid Idiom")
-    # app.setPalette(getPalette())
+    if getSettings()["inAppTheme"]["use"] == "True":
+        app.setPalette(getPalette()) 
 
     window = MainWindow()
     app.exec_()

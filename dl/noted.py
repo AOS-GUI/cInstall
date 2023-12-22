@@ -4,7 +4,7 @@ from PyQt5.QtCore import *
 from files.apps.sdk.sdk import *
 from os import makedirs
 
-#~noted|quick notes app|v1.0
+#~noted|quick notes app|v1.1
 
 totaldata = ""
 firstResize = True
@@ -21,6 +21,13 @@ class noted(QWidget):
         self.editBox.setGeometry(0,0,self.frameGeometry().width(),self.frameGeometry().height())
         self.editBox.textChanged.connect(self.updateStatus)
 
+        try:
+            with open(getAOSdir()+"apps/assets/noted/pos","r") as f:
+                pos = f.read().split(",")
+                self.move(int(pos[0]),int(pos[1]))
+        except Exception as e:
+            pass
+
         makedirs(getAOSdir()+"apps/assets/noted/",exist_ok=True)
 
         try:
@@ -33,9 +40,21 @@ class noted(QWidget):
 
         self.installEventFilter(self)
 
+    def location(self):
+        #geo = self.geometry()
+        return [self.x(),self.y()]
+
     def updateStatus(self):
         global totaldata
         totaldata = self.editBox.toPlainText()
+
+        with open(getAOSdir()+"apps/assets/noted/notes.txt","w+") as f:
+            f.write(totaldata)
+            f.close()
+        with open(getAOSdir()+"apps/assets/noted/pos","w+") as f:
+            pos = self.location()
+
+            f.write(str(pos[0])+","+str(pos[1]))
 
     def eventFilter(self, obj, event):
         global firstResize
@@ -45,13 +64,13 @@ class noted(QWidget):
                 firstResize = False
             else:
                 self.editBox.setGeometry(0,0,self.frameGeometry().width(),self.frameGeometry().height()-30)
-        return super().eventFilter(obj, event)
+        elif event.type() == QEvent.Move:
+            with open(getAOSdir()+"apps/assets/noted/pos","w+") as f:
+                pos = self.location()
 
-    def closeEvent(self, event):
-        global totaldata
-        f = open(getAOSdir()+"apps/assets/noted/notes.txt","w+")
-        f.write(totaldata)
-        f.close()
+                f.write(str(pos[0])+","+str(pos[1]))
+        return super().eventFilter(obj, event)
+            
 
 window = noted()
 window.show()
